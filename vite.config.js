@@ -1,4 +1,7 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
 export default defineConfig({
   plugins: [react()],
-  base: "/", // 👈 good practice, ensures routing works
+  base: process.env.VERCEL ? "/" : "/Registration_form/",
 });
