@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-   "homepage": "https://amolnaikwade.github.io/Registration_form/",
+   "homepage": "https://Amolnaikwade.github.io/Registration_form/",
   
   "scripts": {
     "dev": "vite",
