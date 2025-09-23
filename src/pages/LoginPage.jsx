@@ -8,7 +8,7 @@ export default function LoginPage() {
       <Header />
 
       {/* Centered Login Form */}
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex justify-center mt-8 px-4">
         <LoginForm />
       </div>
     </div>

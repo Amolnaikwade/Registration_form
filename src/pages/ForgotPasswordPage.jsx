@@ -23,11 +23,11 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Header />
 
-      <div className="flex flex-1 items-center justify-center">
+      {/* 🔹 Use margin instead of flex-1 to avoid huge gap */}
+      <div className="flex justify-center mt-8 px-4">
         <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md">
           <h2 className="text-2xl font-bold text-center mb-6">Forgot Password</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-
             {/* Email input with icon */}
             <div className="relative">
               <MdEmail className="absolute left-3 top-3 text-gray-500 text-lg" />
