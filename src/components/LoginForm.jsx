@@ -56,12 +56,15 @@ export default function LoginForm() {
       </form>
 
       {/* Forgot password + Register links */}
-      <div className="flex justify-between mt-3 text-sm">
+      <div className="flex flex-col mt-4 text-sm space-y-2">
         <Link to="/forgot-password" className="text-blue-600 hover:underline">
           Forgot Password?
         </Link>
-        <Link to="/register" className="text-blue-600 hover:underline">
-          Register
+        <Link to="/user-register" className="text-blue-600 hover:underline">
+          User Register
+        </Link>
+        <Link to="/doctor-register" className="text-blue-600 hover:underline">
+          Doctor Register
         </Link>
       </div>
     </div>
