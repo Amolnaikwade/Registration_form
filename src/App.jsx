@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import UserRegisterPage from "./pages/UserRegisterPage";
-import DoctorRegisterPage from "./pages/DoctorRegisterPage";
+import UserRegisterPage from "./components/UserRegisterForm";
+import DoctorRegisterPage from "./components/DoctorRegisterForm";
+import DoctorListPage from "./pages/DoctorListPage"; // ✅ new import
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/user-register" element={<UserRegisterPage />} />
         <Route path="/doctor-register" element={<DoctorRegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/doctor-list" element={<DoctorListPage />} /> {/* ✅ new route */}
       </Routes>
     </Router>
   );

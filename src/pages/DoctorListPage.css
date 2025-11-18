@@ -1,0 +1,123 @@
+/* MAIN CONTAINER */
+.landing-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2ff, #f8f9ff);
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 40px;
+}
+
+/* HERO SECTION */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  animation-duration: 0.8s;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.logout-btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* SECTION TITLE */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 40px 0 20px;
+  color: #333;
+}
+
+/* DOCTOR GRID */
+.doctor-grid {
+  display: grid;
+  gap: 20px;
+  padding: 0 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* DOCTOR CARD */
+.doctor-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  animation-duration: 0.8s;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.doctor-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.doctor-card p {
+  color: #666;
+  margin: 4px 0;
+}
+
+/* If no doctors */
+.no-doctors {
+  text-align: center;
+  color: #777;
+  margin-top: 20px;
+}
+
+/* ANIMATION CLASSES */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.8s forwards;
+}
+
+/* KEYFRAMES */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

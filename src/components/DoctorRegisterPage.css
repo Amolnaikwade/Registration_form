@@ -1,0 +1,143 @@
+/* Full page gradient background */
+.doctor-page-bg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #4f46e5, #2d36dd, #3342ea);
+  background-size: cover;
+}
+
+/* Main form card */
+.doctor-form-container {
+  width: 100%;
+  max-width: 750px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 35px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Form heading */
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+/* Form layout grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+/* Full width fields */
+.full {
+  grid-column: span 2;
+}
+
+/* Input controls */
+.form-control label {
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-control input,
+.form-control textarea,
+.form-control select {
+  width: 100%;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.85);
+  transition: 0.3s;
+}
+
+/* Focus animation */
+.form-control input:focus,
+.form-control textarea:focus,
+.form-control select:focus {
+  transform: scale(1.02);
+  background: #ffffff;
+  box-shadow: 0 0 10px #c084fc;
+}
+
+/* Error message */
+.error {
+  color: #ffbaba;
+  font-size: 0.85rem;
+}
+
+/* Password eye icon */
+.password-control {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 42px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #555;
+}
+
+.eye-icon:hover {
+  color: #000;
+}
+
+/* Submit button */
+.submit-btn {
+  grid-column: span 2;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: #231d95;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #6d28d9;
+  transform: scale(1.03);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: 1;
+  }
+
+  .doctor-form-container {
+    padding: 25px;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./DoctorRegisterPage.css";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 export default function DoctorRegisterForm() {
   const [form, setForm] = useState({
@@ -11,9 +14,12 @@ export default function DoctorRegisterForm() {
     hospital: "",
     address: "",
     speciality: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,153 +30,126 @@ export default function DoctorRegisterForm() {
     if (!form.name) newErrors.name = "Name is required";
     if (!form.surname) newErrors.surname = "Surname is required";
     if (!form.email) newErrors.email = "Email is required";
+    if (!/\S+@\S+\.\S+/.test(form.email)) newErrors.email = "Enter a valid email";
     if (!form.phone) newErrors.phone = "Phone number is required";
     if (!form.qualification) newErrors.qualification = "Qualification is required";
     if (!form.hospital) newErrors.hospital = "Hospital/Clinic is required";
     if (!form.address) newErrors.address = "Address is required";
     if (!form.speciality) newErrors.speciality = "Speciality is required";
+
+    if (!form.password) newErrors.password = "Password is required";
+    else if (!/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(form.password))
+      newErrors.password =
+        "Password must include 8+ chars, uppercase, number & special character";
+
     return newErrors;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validate();
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
       setErrors({});
-      sessionStorage.setItem("doctorForm", JSON.stringify(form));
-      alert("Doctor data saved in sessionStorage ✅");
+      const storedDoctors = JSON.parse(localStorage.getItem("doctors")) || [];
+      localStorage.setItem("doctors", JSON.stringify([...storedDoctors, form]));
+      alert("Doctor Registered Successfully!");
+      navigate("/login");
     }
   };
 
   return (
-    <div className="w-full max-w-lg bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-2xl font-bold text-center mb-6">Doctor Registration</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        
-        {/* Name */}
-        <div>
-          <label className="block font-medium">Name *</label>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
-        </div>
+    <div className="doctor-page-bg">
+      <div className="doctor-form-container">
+        <h2 className="form-title">Doctor Registration</h2>
 
-        {/* Middle Name */}
-        <div>
-          <label className="block font-medium">Middle Name</label>
-          <input
-            type="text"
-            name="middleName"
-            value={form.middleName}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="form-grid">
 
-        {/* Surname */}
-        <div>
-          <label className="block font-medium">Surname *</label>
-          <input
-            type="text"
-            name="surname"
-            value={form.surname}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.surname && <p className="text-red-500 text-sm">{errors.surname}</p>}
-        </div>
+          <div className="form-control">
+            <label>Name *</label>
+            <input name="name" value={form.name} onChange={handleChange} />
+            {errors.name && <p className="error">{errors.name}</p>}
+          </div>
 
-        {/* Email */}
-        <div>
-          <label className="block font-medium">Email *</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-        </div>
+          <div className="form-control">
+            <label>Middle Name</label>
+            <input name="middleName" value={form.middleName} onChange={handleChange} />
+          </div>
 
-        {/* Phone */}
-        <div>
-          <label className="block font-medium">Phone No *</label>
-          <input
-            type="tel"
-            name="phone"
-            value={form.phone}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-        </div>
+          <div className="form-control">
+            <label>Surname *</label>
+            <input name="surname" value={form.surname} onChange={handleChange} />
+            {errors.surname && <p className="error">{errors.surname}</p>}
+          </div>
 
-        {/* Qualification */}
-        <div>
-          <label className="block font-medium">Qualification *</label>
-          <input
-            type="text"
-            name="qualification"
-            value={form.qualification}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.qualification && <p className="text-red-500 text-sm">{errors.qualification}</p>}
-        </div>
+          <div className="form-control">
+            <label>Email *</label>
+            <input type="email" name="email" value={form.email} onChange={handleChange} />
+            {errors.email && <p className="error">{errors.email}</p>}
+          </div>
 
-        {/* Hospital */}
-        <div>
-          <label className="block font-medium">Hospital/Clinic *</label>
-          <input
-            type="text"
-            name="hospital"
-            value={form.hospital}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.hospital && <p className="text-red-500 text-sm">{errors.hospital}</p>}
-        </div>
+          <div className="form-control">
+            <label>Phone *</label>
+            <input name="phone" value={form.phone} onChange={handleChange} />
+            {errors.phone && <p className="error">{errors.phone}</p>}
+          </div>
 
-        {/* Address */}
-        <div>
-          <label className="block font-medium">Address *</label>
-          <textarea
-            name="address"
-            value={form.address}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
-        </div>
+          <div className="form-control">
+            <label>Qualification *</label>
+            <input name="qualification" value={form.qualification} onChange={handleChange} />
+            {errors.qualification && <p className="error">{errors.qualification}</p>}
+          </div>
 
-        {/* Speciality */}
-        <div>
-          <label className="block font-medium">Speciality *</label>
-          <input
-            type="text"
-            name="speciality"
-            value={form.speciality}
-            onChange={handleChange}
-            className="w-full border rounded-md p-2"
-          />
-          {errors.speciality && <p className="text-red-500 text-sm">{errors.speciality}</p>}
-        </div>
+          <div className="form-control">
+            <label>Hospital/Clinic *</label>
+            <input name="hospital" value={form.hospital} onChange={handleChange} />
+            {errors.hospital && <p className="error">{errors.hospital}</p>}
+          </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
-        >
-          Register Doctor
-        </button>
-      </form>
+          <div className="form-control full">
+            <label>Address *</label>
+            <textarea name="address" value={form.address} onChange={handleChange}></textarea>
+            {errors.address && <p className="error">{errors.address}</p>}
+          </div>
+
+          <div className="form-control">
+            <label>Speciality *</label>
+            <select name="speciality" value={form.speciality} onChange={handleChange}>
+              <option value="">Select Speciality</option>
+              <option>General Physician</option>
+              <option>Cardiologist</option>
+              <option>Dermatologist</option>
+              <option>Gynecologist</option>
+              <option>Orthopedic</option>
+              <option>Pediatrician</option>
+              <option>Neurologist</option>
+              <option>ENT Specialist</option>
+            </select>
+            {errors.speciality && <p className="error">{errors.speciality}</p>}
+          </div>
+
+          <div className="form-control password-control">
+            <label>Password *</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+            />
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+            </span>
+            {errors.password && <p className="error">{errors.password}</p>}
+          </div>
+
+          <button className="submit-btn">Register Doctor</button>
+        </form>
+      </div>
     </div>
   );
 }
