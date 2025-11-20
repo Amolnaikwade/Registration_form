@@ -1,0 +1,113 @@
+.admin-table {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.admin-table-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.search-box {
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background: #e9e9e9;
+  cursor: pointer;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Buttons */
+.btn-edit,
+.btn-delete,
+.btn-save,
+.btn-cancel {
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  margin-right: 5px;
+}
+
+.btn-edit {
+  background: #008cff;
+  color: white;
+}
+
+.btn-delete {
+  background: #e00000;
+  color: white;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination .active {
+  background: #008cff;
+  color: #fff;
+}
+
+/* Edit Popup */
+.edit-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 20px;
+  width: 420px;
+  border-radius: 10px;
+}
+
+.popup-field {
+  margin-bottom: 15px;
+}
+
+.btn-save {
+  background: green;
+  color: white;
+}
+
+.btn-cancel {
+  background: gray;
+  color: white;
+}
